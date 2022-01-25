@@ -61,6 +61,7 @@ jobs:
           with:
             app-name: ${{ env.APP_NAME }}
             deploy-environment: pprd
+            submodules-pat: ${{ secrets.SUBMODULE_PAT_TOKEN }}
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws-region: eu-west-2
@@ -77,6 +78,7 @@ jobs:
           with:
             app-name: ${{ env.APP_NAME }}
             deploy-environment: prd
+            submodules-pat: ${{ secrets.SUBMODULE_PAT_TOKEN }}
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws-region: eu-west-2
