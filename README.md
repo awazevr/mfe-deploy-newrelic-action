@@ -15,6 +15,10 @@ This is a GitHub Action meant to be used as a [composite action](https://docs.gi
 
 **Required** Specifies the AWS Region to use.
 
+### `submodules-pat`
+
+**Required** The PAT Access token required to access the submodules repository.
+
 ### `app-name`
 
 **Required** The programatic name of your MFE (e.g. search-mfe).
