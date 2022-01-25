@@ -65,8 +65,8 @@ jobs:
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws-region: eu-west-2
-            new-relic-api-key: ${{ secrets.NEWRELIC_API_KEY }}
-            pagerduty-service-key: ${{ secrets.NEW_RELIC_API_KEY }}
+            new-relic-api-key: ${{ secrets.NEW_RELIC_API_KEY }}
+            pagerduty-service-key: ${{ secrets.PAGERDUTY_SERVICE_KEY }}
 
     deploy_pprd:
       environment: prd
@@ -82,7 +82,7 @@ jobs:
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws-region: eu-west-2
-            new-relic-api-key: ${{ secrets.NEWRELIC_API_KEY }}
-            pagerduty-service-key: ${{ secrets.NEW_RELIC_API_KEY }}
+            new-relic-api-key: ${{ secrets.NEW_RELIC_API_KEY }}
+            pagerduty-service-key: ${{ secrets.PAGERDUTY_SERVICE_KEY }}
 ```
 
