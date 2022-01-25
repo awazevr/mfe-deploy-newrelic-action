@@ -1,0 +1,55 @@
+name: "Deploy MFE"
+description: "Deploy MFE to specified environment."
+inputs:
+  aws-access-key-id:
+    description: 'AWS Access Key Id'
+    required: true
+
+  aws-secret-access-key:
+    description: 'AWS Secret Access Key'
+    required: true
+
+  aws-region:
+    description: 'AWS Resource Region'
+    required: true
+
+  new-relic-api-key:
+    description: 'New Relic API Key'
+    required: true
+
+  pagerduty-service-key:
+    description: 'PagerDuty service key'
+    required: true
+
+  deploy-environment:
+    description: 'The AWS deployment environment account '
+    required: true
+  
+  app-name:
+    description: 'MFE app name (e.g. search-mfe, property-details-mfe)'
+    required: true
+    
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.SUBMODULE_PAT_TOKEN }}
+        submodules: 'true'
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ inputs.aws-access-key-id }}
+        aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
+        aws-region: ${{ inputs.aws-region }}
+
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.14.7
+
+    - name: Deploy newrelic
+      working-directory: ./mfe-infrastructure/tf-newrelic
+      shell: bash
+      run: export PATH=$PATH:$(pwd)/../bin && $(../bin/set_env_${{ inputs.deploy-environment }}) && PAGERDUTY_SERVICE_KEY=${{ inputs.pagerduty-service-key }} API_KEY=${{ inputs.new-relic-api-key }} APP_NAME=${{ inputs.app-name }} make apply
