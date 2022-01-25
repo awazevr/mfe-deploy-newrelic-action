@@ -12,6 +12,10 @@ inputs:
   aws-region:
     description: 'AWS Resource Region'
     required: true
+    
+  submodules-pat:
+    description: 'Submodule personal access token'
+    required: true
 
   new-relic-api-key:
     description: 'New Relic API Key'
@@ -35,7 +39,7 @@ runs:
   steps:
     - uses: actions/checkout@v2
       with:
-        token: ${{ secrets.SUBMODULE_PAT_TOKEN }}
+        token: ${{ inputs.submodules-pat }}
         submodules: 'true'
 
     - name: Configure AWS credentials
